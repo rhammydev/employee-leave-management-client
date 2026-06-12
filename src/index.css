@@ -1,0 +1,52 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+@theme {
+  /* custom fonts */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-geist: "Geist", sans-serif;
+}
+
+:root {
+  --bg: #f7f5f2;
+}
+
+body {
+   background-color: var(--bg);
+  overscroll-behavior: none;
+  font-family: var(--font-geist);
+}
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+/* Remove browser autofill background */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px inherit inset !important; /* bg color */
+  box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-text-fill-color: #616161 !important; /* text color */
+  transition: background-color 5000s ease-in-out 0s; /* prevents flicker */
+}
