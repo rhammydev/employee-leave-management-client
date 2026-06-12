@@ -505,14 +505,14 @@ export function LeavesPage() {
                               key={i}
                               className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold
                               ${i < lr?.approvals?.length
-                                  ? lr?.approvals[i].action === "Approve"
+                                  ? lr?.approvals[i].action?.toLowerCase() === "approved"
                                     ? "bg-green-100 text-green-600"
                                     : "bg-red-100 text-red-500"
                                   : "bg-gray-100 text-gray-300"
                                 }`}
                             >
                               {i < lr?.approvals?.length
-                                ? lr?.approvals?.[i].action === "Approve"
+                                ? lr?.approvals?.[i].action?.toLowerCase() === "approved"
                                   ? "✓"
                                   : "✗"
                                 : i + 1}

@@ -9,11 +9,11 @@ function formatDate(iso: string) {
 
 function getInitials(name: string) {
   return name
-    .split(' ')
-    .map(n => n[0])
-    .join('')
-    .slice(0, 2)
-    .toUpperCase();
+    ?.split(' ')
+    ?.map(n => n[0])
+    ?.join('')
+    ?.slice(0, 2)
+    ?.toUpperCase();
 }
 
 interface EmployeeDrawerProps {
@@ -48,11 +48,11 @@ function EmployeeDrawer({ employee, isLoading, onClose }: EmployeeDrawerProps) {
           <div className="p-5 space-y-5">
             <div className="flex items-center gap-4">
               <div className="w-14 h-14 rounded-2xl bg-green-50 flex items-center justify-center shrink-0">
-                <span className="text-green-600 font-semibold">{getInitials(employee.employeeName)}</span>
+                <span className="text-green-600 font-semibold ">{getInitials(employee?.employeeName || employee?.fullName)}</span>
               </div>
               <div className="min-w-0">
-                <h3 className="text-lg font-semibold text-gray-900 font-display truncate">{employee.employeeName}</h3>
-                <p className="text-sm text-gray-500">{employee.department}</p>
+                <h3 className="text-lg font-semibold text-gray-900 font-display truncate capitalize">{employee?.employeeName || employee?.fullName}</h3>
+                <p className="text-sm text-gray-500 capitalize">{employee?.department}</p>
               </div>
             </div>
 
@@ -138,14 +138,14 @@ export function OnLeavePage() {
                 <thead className="bg-gray-50/80 border-b border-gray-100">
                   <tr>
                     <th className="text-left px-5 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wide">Employee</th>
-                    <th className="text-left px-5 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wide">Email</th>
                     <th className="text-left px-5 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wide">Department</th>
-                    <th className="text-left px-5 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wide">Joined</th>
+                    <th className="text-left px-5 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wide">Start Date</th>
+                    <th className="text-left px-5 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wide">End Date</th>
                     <th className="text-right px-5 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wide">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
-                  {employees.map(emp => (
+                  {employees?.map(emp => (
                     <tr key={emp.id} className="hover:bg-green-50/40 transition-colors">
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-3 min-w-0">
@@ -158,19 +158,15 @@ export function OnLeavePage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-5 py-4">
-                        <div className="flex items-center gap-1.5 text-gray-600">
-                          <Mail size={14} className="text-gray-400 shrink-0" />
-                          <span className="truncate max-w-[220px]">{emp.email}</span>
-                        </div>
-                      </td>
+                   
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-1.5 text-gray-600">
                           <Building2 size={14} className="text-gray-400 shrink-0" />
-                          <span>{emp.department}</span>
+                          <span className="capitalize">{emp.department}</span>
                         </div>
                       </td>
-                      <td className="px-5 py-4 text-gray-600">{formatDate(emp.dateJoined)}</td>
+                      <td className="px-5 py-4 text-gray-600">{formatDate(emp.startDate)}</td>
+                      <td className="px-5 py-4 text-gray-600">{formatDate(emp.endDate)}</td>
                       <td className="px-5 py-4">
                         <div className="flex items-center justify-end">
                           <button

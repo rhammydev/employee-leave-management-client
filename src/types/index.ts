@@ -82,3 +82,14 @@ export interface ApiResponse<T> {
   message: string;
   data: T;
 }
+
+// ─── Employee on Leave ───────────────────────────────────────────────────────
+export interface EmployeeOnLeave {
+  id: number;
+  employeeName: string;
+  fullName: string;   // was "name" before — updated to match FullName
+  email: string;
+  department: string;
+  startDate: string;
+  endDate: string;
+}

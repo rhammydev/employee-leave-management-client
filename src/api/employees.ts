@@ -3,6 +3,7 @@ import type {
   Employee,
   CreateEmployeeRequestDto,
   UpdateEmployeeRequestDto,
+  EmployeeOnLeave,
 } from "../types";
 
 export const employeeApi = {
@@ -36,8 +37,8 @@ export const employeeApi = {
     await client.delete(`/employees/${id}`);
   },
 
-  getOnLeave: async (): Promise<Employee[]> => {
-    const res = await client.get<Employee[]>(
+  getOnLeave: async (): Promise<EmployeeOnLeave[]> => {
+    const res = await client.get<EmployeeOnLeave[]>(
       "/employees/on-leave",
     );
     return res.data;

@@ -334,7 +334,7 @@ export function EmployeesPage() {
         )}
       </div>
 
-      <Modal size="md" open={showAdd} onClose={() => setShowAdd(false)} title="Add New Employee">
+      <Modal open={showAdd} onClose={() => setShowAdd(false)} title="Add New Employee">
         <EmployeeForm
           form={form}
           errors={errors}

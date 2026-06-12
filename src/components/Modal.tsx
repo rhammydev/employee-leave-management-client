@@ -9,9 +9,13 @@ interface ModalProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-const sizeClass = { sm: 'max-w-sm', md: 'max-w-md', lg: 'max-w-2xl' };
-
 export function Modal({ open, onClose, title, children, size = 'md' }: ModalProps) {
+  const panelSizeClass = size === 'sm'
+    ? 'max-w-sm'
+    : size === 'md'
+      ? 'max-w-md'
+      : 'max-w-2xl';
+
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -26,7 +30,7 @@ export function Modal({ open, onClose, title, children, size = 'md' }: ModalProp
 
       {/* Sheet on mobile, centered panel on sm+ */}
       <div className={`
-        relative bg-white w-full ${sizeClass[size]} sm:w-auto max-h-[92vh] overflow-y-auto
+        relative bg-white w-full min-w-sm ${panelSizeClass} sm:w-auto max-h-[92vh] overflow-y-auto
         rounded-t-2xl sm:rounded-2xl shadow-2xl
       `}>
         {/* Drag handle on mobile */}

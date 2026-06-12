@@ -5,7 +5,7 @@ const client = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-const apiDelayMs = Number(import.meta.env.VITE_API_DELAY_MS ?? (import.meta.env.DEV ? 2500 : 0));
+const apiDelayMs = Number(import.meta.env.VITE_API_DELAY_MS ?? (import.meta.env.DEV ? 2000 : 0));
 
 client.interceptors.request.use(async (config) => {
   if (apiDelayMs > 0) {
