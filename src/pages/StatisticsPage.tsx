@@ -23,7 +23,7 @@ export function StatisticsPage() {
               onChange={e => setDepartment(e.target.value)}
             >
               <option value="">Select a department...</option>
-              {DEPARTMENTS.map(item => (
+              {DEPARTMENTS?.map(item => (
                 <option key={item} value={item}>{item}</option>
               ))}
             </Select>
@@ -47,16 +47,16 @@ export function StatisticsPage() {
         ) : (
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 lg:p-6">
             <div className="flex items-center justify-between mb-3 lg:mb-4">
-              <h3 className="font-semibold text-gray-900">{stats.department}</h3>
-              <span className="text-sm text-gray-400">{stats.totalRequests} total</span>
+              <h3 className="font-semibold text-gray-900">{stats?.department}</h3>
+              <span className="text-sm text-gray-400">{stats?.totalRequests} total</span>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 lg:gap-3">
               {[
-                { label: 'Pending',    value: stats.pending,    color: 'text-amber-600', bg: 'bg-amber-50' },
-                { label: 'Processing', value: stats.processing, color: 'text-blue-600',  bg: 'bg-blue-50' },
-                { label: 'Approved',   value: stats.approved,   color: 'text-green-600', bg: 'bg-green-50' },
-                { label: 'Rejected',   value: stats.rejected,   color: 'text-red-600',   bg: 'bg-red-50' },
-              ].map(({ label, value, color, bg }) => (
+                { label: 'Pending',    value: stats?.pending,    color: 'text-amber-600', bg: 'bg-amber-50' },
+                { label: 'Processing', value: stats?.processing, color: 'text-blue-600',  bg: 'bg-blue-50' },
+                { label: 'Approved',   value: stats?.approved,   color: 'text-green-600', bg: 'bg-green-50' },
+                { label: 'Rejected',   value: stats?.rejected,   color: 'text-red-600',   bg: 'bg-red-50' },
+              ]?.map(({ label, value, color, bg }) => (
                 <div key={label} className={`${bg} rounded-xl p-3 text-center`}>
                   <p className={`text-xl font-semibold ${color} font-display`}>{value}</p>
                   <p className="text-xs text-gray-500 mt-0.5">{label}</p>

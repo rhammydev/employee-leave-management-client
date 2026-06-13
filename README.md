@@ -21,7 +21,7 @@ If your Vite dev server uses a different port, update the allowed origin to matc
 
 ## Environment setup
 
-Create a `.env.local` file in the project root:
+Create a `.env` file in the project root:
 
 ```env
 VITE_API_BASE_URL=http://localhost:5000

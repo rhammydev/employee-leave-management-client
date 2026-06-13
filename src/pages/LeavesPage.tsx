@@ -374,7 +374,7 @@ export function LeavesPage() {
               Leave Requests
             </h1>
             <p className="text-gray-500 text-sm mt-1">
-              {leaves.length} of {allLeaves.length} requests
+              {leaves?.length} of {allLeaves?.length} requests
             </p>
           </div>
           <button
@@ -417,14 +417,14 @@ export function LeavesPage() {
               {s}
               <span className="ml-1.5 opacity-60">
                 {s === "All"
-                  ? allLeaves.length
-                  : allLeaves.filter((l) => l.status === s).length}
+                  ? allLeaves?.length
+                  : allLeaves?.filter((l) => l?.status === s)?.length}
               </span>
             </button>
           ))}
         </div>
 
-        {leaves.length === 0 ? (
+        {leaves?.length === 0 ? (
           <div className="py-20 text-center">
             <CalendarDays size={36} className="mx-auto mb-3 text-gray-200" />
             <p className="text-sm text-gray-400">No leave requests found.</p>
@@ -433,7 +433,7 @@ export function LeavesPage() {
           <>
             {/* Mobile: stacked cards */}
             <div className="md:hidden space-y-3">
-              {leaves.map((lr) => (
+              {leaves?.map((lr) => (
                 <LeaveCard
                   key={lr?.id}
                   lr={lr}
@@ -470,7 +470,7 @@ export function LeavesPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
-                  {leaves.map((lr) => (
+                  {leaves?.map((lr) => (
                     <tr
                       key={lr?.id}
                       className="hover:bg-gray-50/50 transition-colors group"
@@ -500,7 +500,7 @@ export function LeavesPage() {
                       </td>
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-1">
-                          {[0, 1].map((i) => (
+                          {[0, 1]?.map((i) => (
                             <div
                               key={i}
                               className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold

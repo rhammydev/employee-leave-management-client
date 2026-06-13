@@ -40,12 +40,12 @@ export function EmployeeLeavesPage() {
           <div>
             <h1 className="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Employee Leave History</h1>
             <p className="text-gray-500 text-sm mt-1">
-              {leaves.length} leave {leaves.length !== 1 ? 'requests' : 'request'} for employee #{id}
+              {leaves?.length} leave {leaves?.length !== 1 ? 'requests' : 'request'} for employee #{id}
             </p>
           </div>
         </div>
 
-        {leaves.length === 0 ? (
+        {leaves?.length === 0 ? (
           <div className="text-center py-20 text-gray-400">
             <CalendarDays size={40} className="mx-auto mb-3 opacity-30" />
             <p className="text-sm">No leave requests found for this employee.</p>
@@ -66,36 +66,36 @@ export function EmployeeLeavesPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
-                  {leaves.map(lr => (
+                  {leaves?.map(lr => (
                     <tr key={lr.id} className="hover:bg-gray-50/60 transition-colors">
                       <td className="px-5 py-4">
                         <p className="font-medium text-gray-900 text-sm">Request #{lr.id}</p>
-                        <p className="text-xs text-gray-400 mt-0.5 line-clamp-1 max-w-[220px]">{lr.reason}</p>
+                        <p className="text-xs text-gray-400 mt-0.5 line-clamp-1 max-w-[220px]">{lr?.reason}</p>
                       </td>
                       <td className="px-5 py-4">
-                        <LeaveTypeBadge type={lr.leaveType} />
+                        <LeaveTypeBadge type={lr?.leaveType} />
                       </td>
                       <td className="px-5 py-4 text-gray-600 text-xs">
-                        {formatDate(lr.startDate)}
+                        {formatDate(lr?.startDate)}
                         <br />
-                        <span className="text-gray-400">→ {formatDate(lr.endDate)}</span>
+                        <span className="text-gray-400">→ {formatDate(lr?.endDate)}</span>
                       </td>
-                      <td className="px-5 py-4 text-gray-700 font-medium">{getDays(lr.startDate, lr.endDate)}d</td>
+                      <td className="px-5 py-4 text-gray-700 font-medium">{getDays(lr?.startDate, lr?.endDate)}d</td>
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-1">
-                          {[0, 1].map(i => (
+                          {[0, 1]?.map(i => (
                             <div
                               key={i}
                               className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold
-                                ${i < lr.approvals.length
-                                  ? lr.approvals[i].action === 'Approve'
+                                ${i < lr?.approvals?.length
+                                  ? lr?.approvals[i].action === 'Approve'
                                     ? 'bg-green-100 text-green-600'
                                     : 'bg-red-100 text-red-500'
                                   : 'bg-gray-100 text-gray-300'
                                 }`}
                             >
-                              {i < lr.approvals.length
-                                ? lr.approvals[i].action === 'Approve'
+                              {i < lr?.approvals?.length
+                                ? lr?.approvals[i].action === 'Approve'
                                   ? '✓'
                                   : '✗'
                                 : i + 1}
@@ -104,13 +104,13 @@ export function EmployeeLeavesPage() {
                         </div>
                       </td>
                       <td className="px-5 py-4">
-                        <StatusBadge status={lr.status} />
+                        <StatusBadge status={lr?.status} />
                       </td>
                       <td className="px-5 py-4 text-sm text-gray-600">
-                        {lr.rejectionReason ? (
+                        {lr?.rejectionReason ? (
                           <span className="inline-flex items-center gap-1 text-red-600">
                             <Info size={14} />
-                            {lr.rejectionReason}
+                            {lr?.rejectionReason}
                           </span>
                         ) : (
                           <span className="text-gray-300">—</span>

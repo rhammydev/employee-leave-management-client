@@ -30,7 +30,7 @@ function EmployeeDrawer({ employee, isLoading, onClose }: EmployeeDrawerProps) {
         <div className="sticky top-0 bg-white border-b border-gray-100 px-5 py-4 flex items-center justify-between gap-4">
           <div>
             <h2 className="text-base font-semibold text-gray-900 font-display">Employee Details</h2>
-            {employee && <p className="text-xs text-gray-500 mt-0.5">Employee #{employee.id}</p>}
+            {employee && <p className="text-xs text-gray-500 mt-0.5">Employee #{employee?.id}</p>}
           </div>
           <button
             onClick={onClose}
@@ -62,7 +62,7 @@ function EmployeeDrawer({ employee, isLoading, onClose }: EmployeeDrawerProps) {
                   <Mail size={14} />
                   <span className="text-xs font-medium uppercase tracking-wide">Email</span>
                 </div>
-                <p className="text-sm text-gray-900 break-words">{employee.email}</p>
+                <p className="text-sm text-gray-900 break-words">{employee?.email}</p>
               </div>
 
               <div className="p-4 rounded-2xl bg-gray-50 border border-gray-100">
@@ -70,7 +70,7 @@ function EmployeeDrawer({ employee, isLoading, onClose }: EmployeeDrawerProps) {
                   <Building2 size={14} />
                   <span className="text-xs font-medium uppercase tracking-wide">Department</span>
                 </div>
-                <p className="text-sm text-gray-900">{employee.department}</p>
+                <p className="text-sm text-gray-900">{employee?.department}</p>
               </div>
 
               <div className="p-4 rounded-2xl bg-gray-50 border border-gray-100">
@@ -89,7 +89,7 @@ function EmployeeDrawer({ employee, isLoading, onClose }: EmployeeDrawerProps) {
                   <UserCheck size={14} />
                   <span className="text-xs font-medium uppercase tracking-wide">Joined</span>
                 </div>
-                <p className="text-sm text-gray-900">{formatDate(employee.dateJoined)}</p>
+                <p className="text-sm text-gray-900">{formatDate(employee?.dateJoined)}</p>
               </div>
             </div>
           </div>
@@ -120,13 +120,13 @@ export function OnLeavePage() {
         <div className="mb-6 lg:mb-8">
           <h1 className="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Currently On Leave</h1>
           <p className="text-gray-500 text-sm mt-1">
-            {employees.length === 0
+            {employees?.length === 0
               ? 'No employees are currently on leave'
               : `${employees.length} employee${employees.length !== 1 ? 's' : ''} currently on leave`}
           </p>
         </div>
 
-        {employees.length === 0 ? (
+        {employees?.length === 0 ? (
           <div className="text-center py-20 text-gray-400">
             <UserCheck size={40} className="mx-auto mb-3 opacity-30" />
             <p className="text-sm">All employees are currently at work.</p>
@@ -150,11 +150,11 @@ export function OnLeavePage() {
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-3 min-w-0">
                           <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
-                            <span className="text-green-600 font-semibold text-xs">{getInitials(emp.employeeName)}</span>
+                            <span className="text-green-600 font-semibold text-xs">{getInitials(emp?.employeeName)}</span>
                           </div>
                           <div className="min-w-0">
-                            <p className="font-semibold text-gray-900 text-sm truncate">{emp.employeeName}</p>
-                            <p className="text-xs text-gray-400 mt-0.5">Employee #{emp.id}</p>
+                            <p className="font-semibold text-gray-900 text-sm truncate">{emp?.employeeName}</p>
+                            <p className="text-xs text-gray-400 mt-0.5">Employee #{emp?.id}</p>
                           </div>
                         </div>
                       </td>
@@ -162,15 +162,15 @@ export function OnLeavePage() {
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-1.5 text-gray-600">
                           <Building2 size={14} className="text-gray-400 shrink-0" />
-                          <span className="capitalize">{emp.department}</span>
+                          <span className="capitalize">{emp?.department}</span>
                         </div>
                       </td>
-                      <td className="px-5 py-4 text-gray-600">{formatDate(emp.startDate)}</td>
-                      <td className="px-5 py-4 text-gray-600">{formatDate(emp.endDate)}</td>
+                      <td className="px-5 py-4 text-gray-600">{formatDate(emp?.startDate)}</td>
+                      <td className="px-5 py-4 text-gray-600">{formatDate(emp?.endDate)}</td>
                       <td className="px-5 py-4">
                         <div className="flex items-center justify-end">
                           <button
-                            onClick={() => setViewingId(emp.id)}
+                            onClick={() => setViewingId(emp?.id)}
                             title="View details"
                             className="p-1.5 rounded-lg text-gray-400 hover:text-green-600 hover:bg-green-50 transition-colors"
                           >

@@ -107,7 +107,7 @@ function EmployeeDrawer({ employee, isLoading, onClose }: EmployeeDrawerProps) {
         <div className="sticky top-0 bg-white border-b border-gray-100 px-5 py-4 flex items-center justify-between gap-4">
           <div>
             <h2 className="text-base font-semibold text-gray-900 font-display">Employee Details</h2>
-            {employee && <p className="text-xs text-gray-500 mt-0.5">Employee #{employee.id}</p>}
+            {employee && <p className="text-xs text-gray-500 mt-0.5">Employee #{employee?.id}</p>}
           </div>
           <button
             onClick={onClose}
@@ -125,11 +125,11 @@ function EmployeeDrawer({ employee, isLoading, onClose }: EmployeeDrawerProps) {
           <div className="p-5 space-y-5">
           <div className="flex items-center gap-4">
             <div className="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0">
-              <span className="text-blue-600 font-semibold">{getInitials(employee.fullName)}</span>
+              <span className="text-blue-600 font-semibold">{getInitials(employee?.fullName)}</span>
             </div>
             <div className="min-w-0">
-              <h3 className="text-lg font-semibold text-gray-900 font-display truncate">{employee.fullName}</h3>
-              <p className="text-sm text-gray-500">{employee.department}</p>
+              <h3 className="text-lg font-semibold text-gray-900 font-display truncate">{employee?.fullName}</h3>
+              <p className="text-sm text-gray-500">{employee?.department}</p>
             </div>
           </div>
 
@@ -139,7 +139,7 @@ function EmployeeDrawer({ employee, isLoading, onClose }: EmployeeDrawerProps) {
                 <Mail size={14} />
                 <span className="text-xs font-medium uppercase tracking-wide">Email</span>
               </div>
-              <p className="text-sm text-gray-900 break-words">{employee.email}</p>
+              <p className="text-sm text-gray-900 break-words">{employee?.email}</p>
             </div>
 
             <div className="p-4 rounded-2xl bg-gray-50 border border-gray-100">
@@ -147,7 +147,7 @@ function EmployeeDrawer({ employee, isLoading, onClose }: EmployeeDrawerProps) {
                 <Building2 size={14} />
                 <span className="text-xs font-medium uppercase tracking-wide">Department</span>
               </div>
-              <p className="text-sm text-gray-900">{employee.department}</p>
+              <p className="text-sm text-gray-900">{employee?.department}</p>
             </div>
 
             <div className="p-4 rounded-2xl bg-gray-50 border border-gray-100">
@@ -155,7 +155,7 @@ function EmployeeDrawer({ employee, isLoading, onClose }: EmployeeDrawerProps) {
                 <UserCircle size={14} />
                 <span className="text-xs font-medium uppercase tracking-wide">Joined</span>
               </div>
-              <p className="text-sm text-gray-900">{formatDate(employee.dateJoined)}</p>
+              <p className="text-sm text-gray-900">{formatDate(employee?.dateJoined)}</p>
             </div>
           </div>
         </div>
@@ -234,7 +234,7 @@ export function EmployeesPage() {
         <div className="flex items-center justify-between mb-6 lg:mb-8">
           <div>
             <h1 className="text-2xl lg:text-3xl font-semibold text-gray-900 font-display">Employees</h1>
-            <p className="text-gray-500 text-sm mt-1">{employees.length} registered</p>
+            <p className="text-gray-500 text-sm mt-1">{employees?.length} registered</p>
           </div>
           <button
             onClick={openAdd}
@@ -246,7 +246,7 @@ export function EmployeesPage() {
           </button>
         </div>
 
-        {employees.length === 0 ? (
+        {employees?.length === 0 ? (
           <div className="text-center py-20 text-gray-400">
             <UserCircle size={40} className="mx-auto mb-3 opacity-30" />
             <p className="text-sm">No employees yet. Add your first one.</p>
@@ -270,31 +270,31 @@ export function EmployeesPage() {
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-3 min-w-0">
                           <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
-                            <span className="text-blue-600 font-semibold text-xs">{getInitials(emp.fullName)}</span>
+                            <span className="text-blue-600 font-semibold text-xs">{getInitials(emp?.fullName)}</span>
                           </div>
                           <div className="min-w-0">
-                            <p className="font-semibold text-gray-900 text-sm truncate">{emp.fullName}</p>
-                            <p className="text-xs text-gray-400 mt-0.5">Employee #{emp.id}</p>
+                            <p className="font-semibold text-gray-900 text-sm truncate">{emp?.fullName}</p>
+                            <p className="text-xs text-gray-400 mt-0.5">Employee #{emp?.id}</p>
                           </div>
                         </div>
                       </td>
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-1.5 text-gray-600">
                           <Mail size={14} className="text-gray-400 shrink-0" />
-                          <span className="truncate max-w-[220px]">{emp.email}</span>
+                          <span className="truncate max-w-[220px]">{emp?.email}</span>
                         </div>
                       </td>
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-1.5 text-gray-600">
                           <Building2 size={14} className="text-gray-400 shrink-0" />
-                          <span>{emp.department}</span>
+                          <span>{emp?.department}</span>
                         </div>
                       </td>
-                      <td className="px-5 py-4 text-gray-600">{formatDate(emp.dateJoined)}</td>
+                      <td className="px-5 py-4 text-gray-600">{formatDate(emp?.dateJoined)}</td>
                       <td className="px-5 py-4">
                         <div className="flex items-center justify-end gap-1">
                           <button
-                            onClick={() => setViewingId(emp.id)}
+                            onClick={() => setViewingId(emp?.id)}
                             title="View details"
                             className="p-1.5 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors"
                           >

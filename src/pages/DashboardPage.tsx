@@ -34,10 +34,10 @@ export function DashboardPage() {
   const { data: employees = [], isLoading: loadingEmp } = useEmployees();
   const { data: leaves = [], isLoading: loadingLeaves } = useLeaveRequests();
 
-  const pending    = leaves.filter(l => l.status === 'PENDING').length;
-  const processing = leaves.filter(l => l.status === 'PROCESSING').length;
-  const approved   = leaves.filter(l => l.status === 'APPROVED').length;
-  const approvalRate = leaves.length ? Math.round((approved / leaves.length) * 100) : 0;
+  const pending    = leaves?.filter(l => l.status === 'PENDING')?.length;
+  const processing = leaves?.filter(l => l.status === 'PROCESSING')?.length;
+  const approved   = leaves?.filter(l => l.status === 'APPROVED')?.length;
+  const approvalRate = leaves?.length ? Math.round((approved / leaves?.length) * 100) : 0;
 
   const recent: LeaveRequest[] = [...leaves]
     .sort((a, b) => new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime())
@@ -61,8 +61,8 @@ export function DashboardPage() {
 
         {/* Stats grid — 2 cols on mobile, 3 on lg */}
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 mb-6 lg:mb-8">
-          <StatCard label="Employees"    value={employees.length} icon={Users}       color="bg-blue-600"   sub="registered" />
-          <StatCard label="Total"        value={leaves.length}    icon={CalendarDays} color="bg-slate-500"  sub="all time" />
+          <StatCard label="Employees"    value={employees?.length} icon={Users}       color="bg-blue-600"   sub="registered" />
+          <StatCard label="Total"        value={leaves?.length}    icon={CalendarDays} color="bg-slate-500"  sub="all time" />
           <StatCard label="Pending"      value={pending}          icon={Clock}        color="bg-amber-500"  sub="1st approval" />
           <StatCard label="Processing"   value={processing}       icon={RefreshCw}    color="bg-blue-400"   sub="2nd approval" />
           <StatCard label="Approved"     value={approved}         icon={CheckCircle}  color="bg-green-600"  sub="fully approved" />
@@ -74,25 +74,25 @@ export function DashboardPage() {
           <div className="px-4 lg:px-6 py-4 border-b border-gray-50">
             <h2 className="text-sm font-semibold text-gray-900">Recent Leave Requests</h2>
           </div>
-          {recent.length === 0 ? (
+          {recent?.length === 0 ? (
             <div className="py-12 text-center text-gray-400 text-sm">No leave requests yet</div>
           ) : (
             <div className="divide-y divide-gray-50">
-              {recent.map(lr => (
+              {recent?.map(lr => (
                 <div key={lr.id} className="px-4 lg:px-6 py-3.5 flex items-center gap-3">
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">{lr.employeeName}</p>
+                    <p className="text-sm font-medium text-gray-900 truncate">{lr?.employeeName}</p>
                     <p className="text-xs text-gray-400 mt-0.5">
-                      {formatDate(lr.startDate)} → {formatDate(lr.endDate)} · {getDays(lr.startDate, lr.endDate)}d
+                      {formatDate(lr?.startDate)} → {formatDate(lr?.endDate)} · {getDays(lr?.startDate, lr?.endDate)}d
                     </p>
                   </div>
                   {/* Hide LeaveTypeBadge on very small screens */}
                   <span className="hidden sm:inline-flex">
-                    <LeaveTypeBadge type={lr.leaveType} />
+                    <LeaveTypeBadge type={lr?.leaveType} />
                   </span>
-                  <StatusBadge status={lr.status} />
+                  <StatusBadge status={lr?.status} />
                   <span className="hidden md:inline text-xs text-gray-300 whitespace-nowrap">
-                    {lr.approvals.length}/2
+                    {lr?.approvals?.length}/2
                   </span>
                 </div>
               ))}
