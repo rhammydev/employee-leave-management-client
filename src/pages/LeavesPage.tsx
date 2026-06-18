@@ -524,11 +524,11 @@ export function LeavesPage() {
                         <StatusBadge status={lr?.status} />
                       </td>
                       <td className="px-5 py-3.5">
-                        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="flex items-center gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
                           <button
                             onClick={() => setDetailTarget(lr)}
                             title="View approvals"
-                            className="p-1.5 rounded-lg text-gray-300 hover:text-blue-500 hover:bg-blue-50 transition-colors"
+                            className="p-1.5 rounded-lg text-black hover:text-blue-500 hover:bg-blue-50 transition-colors"
                           >
                             <Info size={14} />
                           </button>
@@ -536,7 +536,7 @@ export function LeavesPage() {
                             <button
                               onClick={() => openEditLeave(lr)}
                               title="Edit leave request"
-                              className="p-1.5 rounded-lg text-gray-300 hover:text-blue-500 hover:bg-blue-50 transition-colors"
+                              className="p-1.5 rounded-lg text-black hover:text-blue-500 hover:bg-blue-50 transition-colors"
                             >
                               <Pencil size={14} />
                             </button>
@@ -547,14 +547,14 @@ export function LeavesPage() {
                               <button
                                 onClick={() => openAction(lr, "approve")}
                                 title="Approve"
-                                className="p-1.5 rounded-lg text-gray-300 hover:text-green-600 hover:bg-green-50 transition-colors"
+                                className="p-1.5 rounded-lg text-black hover:text-green-600 hover:bg-green-50 transition-colors"
                               >
                                 <CheckCircle size={14} />
                               </button>
                               <button
                                 onClick={() => openAction(lr, "reject")}
                                 title="Reject"
-                                className="p-1.5 rounded-lg text-gray-300 hover:text-red-500 hover:bg-red-50 transition-colors"
+                                className="p-1.5 rounded-lg text-black hover:text-red-500 hover:bg-red-50 transition-colors"
                               >
                                 <XCircle size={14} />
                               </button>
@@ -563,7 +563,7 @@ export function LeavesPage() {
                           <button
                             onClick={() => setDeleteTarget(lr)}
                             title="Delete"
-                            className="p-1.5 rounded-lg text-gray-300 hover:text-red-500 hover:bg-red-50 transition-colors"
+                            className="p-1.5 rounded-lg text-black hover:text-red-500 hover:bg-red-50 transition-colors"
                           >
                             <Trash2 size={14} />
                           </button>
