@@ -765,7 +765,7 @@ export function LeavesPage() {
               label={
                 actionTarget.type === "reject"
                   ? "Rejection Reason (required)"
-                  : "Reason (optional)"
+                  : "Reason"
               }
               error={actionErrors.reason}
             >
