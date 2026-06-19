@@ -1,4 +1,5 @@
 import client from "./client";
+import { DEPARTMENTS } from "../constants/options";
 import type {
   LeaveRequest,
   SubmitLeaveRequestDto,
@@ -8,10 +9,32 @@ import type {
   LeaveType,
 } from "../types";
 
+function normalizeLeaveStatus(status: string): LeaveStatus {
+  return status.toUpperCase() as LeaveStatus;
+}
+
+function normalizeDepartment(department: string): string {
+  const matchedDepartment = DEPARTMENTS.find(
+    item => item.toLowerCase() === department.toLowerCase(),
+  );
+
+  if (matchedDepartment) {
+    return matchedDepartment;
+  }
+
+  return department
+    .toLowerCase()
+    .split(/\s+/)
+    .filter(Boolean)
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 function normalizeLeaveRequest(request: LeaveRequest): LeaveRequest {
   return {
     ...request,
     leaveType: request.leaveType.toUpperCase() as LeaveType,
+    status: normalizeLeaveStatus(request.status),
   };
 }
 
@@ -54,7 +77,10 @@ export const leaveApi = {
       "/leaves/statistics",
       { params: department && department !== "All" ? { department } : undefined },
     );
-    return res.data;
+    return {
+      ...res.data,
+      department: normalizeDepartment(res.data.department),
+    };
   },
 
   submit: async (dto: SubmitLeaveRequestDto): Promise<LeaveRequest> => {

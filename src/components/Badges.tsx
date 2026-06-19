@@ -1,5 +1,9 @@
 import type { LeaveStatus, LeaveType } from '../types';
 
+function normalizeStatus(status: string) {
+  return status.toUpperCase() as LeaveStatus;
+}
+
 const statusConfig: Record<LeaveStatus, { bg: string; text: string; dot: string; label: string }> = {
   PENDING:    { bg: 'bg-amber-50',  text: 'text-amber-700',  dot: 'bg-amber-400',  label: 'Pending' },
   PROCESSING: { bg: 'bg-blue-50',   text: 'text-blue-700',   dot: 'bg-blue-400',   label: 'Processing' },
@@ -18,7 +22,7 @@ const leaveTypeConfig: Record<LeaveType, { bg: string; text: string }> = {
 };
 
 export function StatusBadge({ status }: { status: LeaveStatus }) {
-  const c = statusConfig[status];
+  const c = statusConfig[normalizeStatus(status)];
   return (
     <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium border border-transparent ${c?.bg} ${c?.text}`}>
       <span className={`w-1.5 h-1.5 rounded-full ${c?.dot}`} />
