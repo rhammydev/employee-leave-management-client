@@ -80,6 +80,15 @@ function getApiError(err: unknown): string {
   return e?.response?.data?.message || "Something went wrong. Try again.";
 }
 
+function normalizeStatus(status?: string) {
+  return status?.toUpperCase() ?? "";
+}
+
+function canActOnLeave(status?: string) {
+  const normalizedStatus = normalizeStatus(status);
+  return normalizedStatus === "PENDING" || normalizedStatus === "PROCESSING";
+}
+
 function ApprovalTimeline({ request }: Readonly<{ request: LeaveRequest }>) {
   return (
     <div className="mt-3 space-y-2">
@@ -131,7 +140,7 @@ function LeaveCard({
   onEdit: () => void;
   onDelete: () => void;
 }>) {
-  const canAct = lr?.status === "PENDING" || lr?.status === "PROCESSING";
+  const canAct = canActOnLeave(lr?.status);
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 space-y-3">
       <div className="flex items-start justify-between gap-2">
@@ -532,7 +541,7 @@ export function LeavesPage() {
                           >
                             <Info size={14} />
                           </button>
-                          {lr?.status?.toLowerCase() === "pending" && (
+                          {normalizeStatus(lr?.status) === "PENDING" && (
                             <button
                               onClick={() => openEditLeave(lr)}
                               title="Edit leave request"
@@ -541,8 +550,7 @@ export function LeavesPage() {
                               <Pencil size={14} />
                             </button>
                           )}
-                          {(lr?.status?.toLowerCase() === "pending" ||
-                            lr?.status?.toLowerCase() === "processing") && (
+                          {canActOnLeave(lr?.status) && (
                             <>
                               <button
                                 onClick={() => openAction(lr, "approve")}
@@ -863,7 +871,7 @@ export function LeavesPage() {
               <ApprovalTimeline request={detailTarget} />
             </div>
             {detailTarget.approvals.length < 2 &&
-              detailTarget.status !== "REJECTED" && (
+              normalizeStatus(detailTarget.status) !== "REJECTED" && (
                 <p className="text-xs text-gray-400 italic pt-1">
                   {2 - detailTarget.approvals.length} more approval(s) needed.
                 </p>
